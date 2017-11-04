@@ -35,10 +35,11 @@
 <div class="cl2" [ngSwitch]="course">
 
 <ion-list *ngSwitchCase="'Structure'">
-<ion-item>
-  Course Structure
-</ion-item>
-<ion-item>{{course_details.desp}}</ion-item>
+  <ion-card>
+    <ion-card-header>Course Structure</ion-card-header>
+    <ion-card-content>
+  <p>{{course_details.desp}}</p>
+  </ion-card-content></ion-card>
 </ion-list>
 
 <ion-list *ngSwitchCase="'Assignment'">
@@ -60,7 +61,7 @@ Assignment
     <button ion-button icon-start (click)="openlink('https://iiitssmartattendance.herokuapp.com'+i.Assignment_File)">
         <ion-icon name="star"></ion-icon>
           View
-        
+
     </button>
   </ion-card-content>
 </ion-item>
