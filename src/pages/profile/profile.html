@@ -7,7 +7,10 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>profile</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Profile</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,25 +18,23 @@
 
 <ion-content padding>
 	<ion-card>
-
+      <img src="assets/img/IIIT_sricity_logo.png" width="40" />
   		<ion-card-header>
-    			User Name
+    			<h1 style="color:red; text-align:center;">Details</h1>
   		</ion-card-header>
 
   		<ion-card-content>
-    			<ion-input [value]="'murali.v15'" readonly></ion-input>
+        <ion-label stacked color="primary">Username</ion-label>
+        <ion-input [(ngModel)]="username" name="session" type="text" readonly></ion-input>
+
+        <ion-label stacked color="primary">Email</ion-label>
+        <ion-input [(ngModel)]="email" name="session" type="text" readonly></ion-input>
+
+        <ion-label stacked color="primary">ID</ion-label>
+        <ion-input [(ngModel)]="id" name="session" type="text" readonly></ion-input>
   		</ion-card-content>
 	</ion-card>
-	<ion-card>
 
-  		<ion-card-header>
-    			ID
-  		</ion-card-header>
-
-  		<ion-card-content>
-    			<ion-input [value]="'123'" readonly></ion-input>
-  		</ion-card-content>
-	</ion-card>
 
 
 </ion-content>
