@@ -24,6 +24,7 @@
     "@ionic-native/document-viewer": "^4.3.2",
     "@ionic-native/file": "^4.3.2",
     "@ionic-native/file-opener": "^4.3.2",
+    "@ionic-native/file-transfer": "^4.3.2",
     "@ionic-native/geofence": "^4.3.1",
     "@ionic-native/geolocation": "^4.3.1",
     "@ionic-native/http": "^4.3.1",
@@ -41,6 +42,7 @@
     "cordova-plugin-document-viewer": "^0.9.5",
     "cordova-plugin-file": "^4.3.3",
     "cordova-plugin-file-opener2": "^2.0.19",
+    "cordova-plugin-file-transfer": "^1.6.3",
     "cordova-plugin-geofence": "^0.7.0",
     "cordova-plugin-geolocation": "^2.4.3",
     "cordova-plugin-inappbrowser": "^1.7.1",
@@ -79,7 +81,8 @@
       "cordova-plugin-file-opener2": {},
       "cordova-plugin-file": {},
       "cordova-plugin-document-viewer": {},
-      "cordova-plugin-inappbrowser": {}
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-file-transfer": {}
     },
     "platforms": [
       "browser",

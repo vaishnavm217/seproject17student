@@ -19,7 +19,7 @@ export class CoursePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public storage: Storage) {
     this.storage.get("courses").then((val)=>{
       let temp =[];
-      console.log(val.keys);
+      console.log("val.keys",Object.keys(val));
       for(let i=0;val[i]!=undefined;i++){
       temp.push({"Name":val[i].Course_Name,"id":val[i].Course_ID});
       console.log(i);

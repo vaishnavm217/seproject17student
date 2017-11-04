@@ -22,14 +22,24 @@ export class DashboardPage {
   num_lec : Number;
   course_time : Date;
   name : any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
+    
+  }
+
+  ionViewDidLoad() {
     this.course_name="";
     this.course_time=null;
     this.course_id=-1;
     this.num_lec=0;
     this.storage.get("user").then((user)=>{this.name = user.first_name+" "+user.last_name});
-    this.storage.get("timetable").then((val)=>{
-      this.storage.get("courses").then((val1)=>{
+    this.storage.get("timetable").catch().then((val)=>{
+      this.storage.get("courses").catch().then((val1)=>{
+        console.log("lol",val);
+        console.log("lol1",val1);
+        if(val==null){
+          this.navCtrl.setRoot(this.navCtrl.getActive().component);
+      }
         var temp=new Date();
           for(let i of val)
           {
@@ -62,12 +72,9 @@ export class DashboardPage {
             this.num_lec = temp2.length-1;
           }
           
+          
         });
       });
-  }
-
-  ionViewDidLoad() {
-    
     console.log('ionViewDidLoad DashboardPage');
   }
 

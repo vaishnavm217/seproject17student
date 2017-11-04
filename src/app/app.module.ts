@@ -20,6 +20,7 @@ import { FileOpener } from '@ionic-native/file-opener';
 import { File } from '@ionic-native/file';
 import { DocumentViewer} from '@ionic-native/document-viewer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { FileTransfer} from '@ionic-native/file-transfer';
 @NgModule({
   declarations: [
     MyApp,
@@ -58,6 +59,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     File,
     AuthServiceProvider,
     InAppBrowser,
+    FileTransfer,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })

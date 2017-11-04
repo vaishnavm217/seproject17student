@@ -26,7 +26,7 @@
     Assignment
   </ion-segment-button>
   <ion-segment-button value="Records">
-    Students
+    Records
   </ion-segment-button>
     <!-- <div>{{socs}}</div> -->
   </ion-segment>
@@ -65,22 +65,23 @@ Assignment
   </ion-card-content>
 </ion-item>
 </ion-card>
+<!-- <ion-card>
+    <form #loginForm="ngForm" novalidate>
+  <label class="file-upload">
+    <ion-input type="file" file="file" [(ngModel)]="login.file" name="file" #fileInput [attr.accept]="accept" ></ion-input>
+  </label>
+  <button ion-button (click)="func(loginForm)" type="submit" block>Login</button>
+  </form>
+</ion-card> -->
+<!-- <ion-fab bottom right>
+  <button ion-fab (click)="presentPrompt()"><ion-icon name="add"></ion-icon></button>
+</ion-fab> -->
+
 
 </ion-list>
 
 <!-- ########################################################## -->
 <ion-list *ngSwitchCase="'Records'">
-<ion-item>
-Students
-</ion-item>
-<ion-card *ngFor="let i of students">
-  <ion-card-header>
-    <b>{{i.Num}}</b>
-  </ion-card-header>
-  <ion-card-content>
-    <h2>{{i.Name}}</h2>
-  </ion-card-content>
-</ion-card>
 </ion-list>
 
 </div>

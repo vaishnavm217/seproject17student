@@ -29,10 +29,12 @@ type: string = "month";
   time_table_eve=[];
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,public storage: Storage) {
     this.storage.get("timetable").then((val)=>{
+      console.log("timetable",val);
         this.storage.get("courses").then((val1)=>{
             for(let i of val)
             {
                 for(let j=0;j<Object.keys(val1).length;j++){
+                  console.log("iteration",i,val1[j])
                 if(i.Course_ID==val1[j].Course_ID)
                 {
                 i["Course_Name"] = val1[j].Course_Name;
@@ -41,7 +43,7 @@ type: string = "month";
                 //console.log(val);
             }
             }
-            console.log(val1,val);
+            console.log(this.time_table_eve);
             this.eventSource= this.createRandomEvents();
         });
         
@@ -59,8 +61,6 @@ type: string = "month";
 
   createRandomEvents() {
 
-  	  //  var link = 'https://www.docconsult.co.in/api/apicalendarevent.php';
-  		var events_cal = [];
           var events = [];
           var startDate=new Date("1 August 2017 00:00:00");
           var Enddate=new Date("11 December 2017 00:00:00");

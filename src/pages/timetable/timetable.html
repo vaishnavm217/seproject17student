@@ -15,15 +15,11 @@
 
 </ion-header>
 <ion-content>
-<button ion-button block  (click)="refress()" style="text-align:center;background-color:red;">
-<h1 style="color:white;"> {{stat}} Attendance</h1>
-</button>
-<ion-card-content style="text-align:center">
-<h1>{{mess}}</h1>
-<h1>Attendance Count:{{roll_count}}</h1>
-<ion-list>
-  <ion-item *ngFor="let i of stud_arr" ><ion-label>{{i}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;display:inline;text-align:left">{{studs[i]}}</span></ion-label>
+<ion-item>
+<ion-label stacked color="primary">Session-Id</ion-label>
+<ion-input [(ngModel)]="session" name="session" type="text" ></ion-input>
 </ion-item>
-</ion-list>
-</ion-card-content>
+<button ion-button block  (click)="giveAttendance()" style="text-align:center;background-color:red;">
+<h1 style="color:white;">Answer your Attendance</h1>
+</button>
 </ion-content>
