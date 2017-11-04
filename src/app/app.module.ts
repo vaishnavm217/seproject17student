@@ -21,6 +21,7 @@ import { File } from '@ionic-native/file';
 import { DocumentViewer} from '@ionic-native/document-viewer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { FileTransfer} from '@ionic-native/file-transfer';
+import { ProfilePage } from '../pages/profile/profile';
 @NgModule({
   declarations: [
     MyApp,
@@ -31,6 +32,7 @@ import { FileTransfer} from '@ionic-native/file-transfer';
     CoursePage,
     TimetablePage,
     LoginPage,
+    ProfilePage,
   ],
   imports: [
     NgCalendarModule,
@@ -49,6 +51,7 @@ import { FileTransfer} from '@ionic-native/file-transfer';
     CoursePage,
     TimetablePage,
     LoginPage,
+    ProfilePage
   ],
   providers: [
     StatusBar,

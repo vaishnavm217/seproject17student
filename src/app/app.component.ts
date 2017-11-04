@@ -9,6 +9,7 @@ import { CoursePage } from '../pages/course/course';
 import { TimetablePage } from '../pages/timetable/timetable';
 import { LoginPage } from '../pages/login/login';
 import { Storage } from '@ionic/storage';
+import { ProfilePage } from '../pages/profile/profile';
 @Component({
   templateUrl: 'app.html'
 })
@@ -28,6 +29,7 @@ export class MyApp {
       { title: 'My Almanac', component: AlmanacPage },
       { title: 'My Courses', component: CoursePage },
       { title: 'Attendance', component: TimetablePage },
+      { title: 'My Profile', component: ProfilePage },
       { title:'Logout', component: LoginPage}
     ];
 
