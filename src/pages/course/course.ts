@@ -14,6 +14,7 @@ import { CoursedetailPage } from '../coursedetail/coursedetail';
   selector: 'page-course',
   templateUrl: 'course.html',
 })
+/* JS (Typescripting) starts here */
 export class CoursePage {
   courses: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,public storage: Storage) {
