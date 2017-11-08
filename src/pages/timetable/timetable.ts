@@ -4,7 +4,9 @@ import { Storage } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Http,Headers, RequestOptions, Response} from '@angular/http';
 import { AlertController } from 'ionic-angular';
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 /**
  * Generated class for the TimetablePage page.
  *
@@ -34,6 +36,7 @@ export class TimetablePage {
   roll_count = 0;
   stat = "Start";
   main_url: string;
+  button_status=true;
   constructor(public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams,public storage: Storage,public geolocation: Geolocation,public loadingCtrl: LoadingController, public http: Http) {
   this.mess = "Attendance Not Started";
   this.main_url="https://iiitssmartattendance.herokuapp.com";
@@ -46,6 +49,8 @@ export class TimetablePage {
       }
     }
   });
+  this.inter = setInterval(()=>{this.check_session()},10000);
+
   }
   refress()
   {
@@ -161,15 +166,15 @@ giveAttendance(){
   console.log("hello");
   console.log(this.session);
   this.storage.get('user').then((val)=>{
-if(this.session){
-  let body ={
-    Student_ID:val.Person_ID,Date_time:new Date(),Marked:"P",ASession_ID:this.session
-  };
+  if(this.session){
+    let body ={
+      Student_ID:val.Person_ID,Date_time:new Date(),Marked:"R",ASession_ID:this.session
+    };
   //console.log(loc);
-  let headers = new Headers({
+    let headers = new Headers({
     'Content-Type' : 'application/json',
     'Authorization': "JWT "+val.token
-  });
+    });
   // loading.present();
   let options = new RequestOptions({ headers: headers});
   this.http.post(this.main_url+'/api/add_view_attendance/',body,options).subscribe((jsonr)=>
@@ -178,7 +183,7 @@ if(this.session){
     console.log("success!");
     const alert = this.alertCtrl.create({
     title: 'Successful',
-    subTitle: 'You have been marked Present',
+    subTitle: 'You have been marked for Review',
     buttons: ['OK']
   });
   alert.present();
@@ -201,6 +206,55 @@ else{
 
 }
 
+check_session(){
+
+  this.storage.get('user').then((val)=>{
+
+  let body ={
+    Student_ID:val.Person_ID
+  };
+  //console.log(loc);
+  let headers = new Headers({
+    'Content-Type' : 'application/json',
+    'Authorization': "JWT "+val.token
+  });
+  // loading.present();
+  let options = new RequestOptions({ headers: headers});
+  this.http.post(this.main_url+'/api/attendance_session/',body,options)  .map(res=>res.json())
+  .subscribe((jsonr)=>
+  {
+
+    console.log("success!");
+    console.log(jsonr.length);
+    for (let i in jsonr) {
+
+      this.storage.get("timetable").then((val)=>{
+          console.log(val);
+            for (let j in val){
+              if(jsonr[i].Course_Slot==val[j].T_ID){
+                console.log("Session Active");
+                this.button_status=false;
+                break;
+              }
+              else{
+                this.button_status=true;
+              }
+              console.log("Timetable: ",val[j].T_ID);
+            }
+      });
+            console.log(jsonr[i].Course_Slot);
+    }
+
+  },(err)=>{console.log("Failed!");});
+
+
+  });
+
+  //clearInterval(this.inter);
+
+
+
+}
 
 
 

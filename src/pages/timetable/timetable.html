@@ -19,7 +19,7 @@
 <ion-label stacked color="primary">Session-Id</ion-label>
 <ion-input [(ngModel)]="session" name="session" type="text" ></ion-input>
 </ion-item>
-<button ion-button block  (click)="giveAttendance()" style="text-align:center;background-color:red;">
+<button ion-button block  (click)="giveAttendance()" [disabled]='button_status' style="text-align:center;background-color:red;">
 <h1 style="color:white;">Answer Attendance</h1>
 </button>
 </ion-content>
