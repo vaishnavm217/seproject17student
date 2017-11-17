@@ -44,11 +44,11 @@ type: string = "month";
             }
             }
             console.log(this.time_table_eve);
-            this.eventSource= this.createRandomEvents();
+            this.eventSource= this.createEvents();
         });
-        
+
     });
-  
+
   }
   addEvent(){
 
@@ -59,7 +59,7 @@ type: string = "month";
 
 
 
-  createRandomEvents() {
+  createEvents() {
 
           var events = [];
           var startDate=new Date("1 August 2017 00:00:00");
