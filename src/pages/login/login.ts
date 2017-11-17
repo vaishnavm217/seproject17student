@@ -114,13 +114,13 @@ export class LoginPage {
                         loading.dismiss();
                         const alert = this.alertCtrl.create({
                             title: 'Unauthorized Login',
-                            subTitle: 'Please login using student app',
+                            subTitle: 'Please login using Faculty app',
                             buttons: ['Dismiss']
                           });
                           alert.present();
                     }
 
-                    
+
             });
             },(error)=>
             {
@@ -129,7 +129,7 @@ export class LoginPage {
                 if(Object.keys(error).indexOf("status")!=-1 && error.status.toString()=="404")
                 {
                     console.log("Went");
-                    loading.dismiss();            
+                    loading.dismiss();
                     const alert = this.alertCtrl.create({
                         title: 'Login Failed',
                         subTitle: 'Wrong Credentials',
@@ -138,8 +138,8 @@ export class LoginPage {
                       alert.present();
                 }
                 //  this.handleError(error);
-               
-            }); 
+
+            });
     }
       else {
           if(this.login.ph_number)
