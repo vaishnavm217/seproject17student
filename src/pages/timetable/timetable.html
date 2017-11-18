@@ -16,10 +16,11 @@
 </ion-header>
 <ion-content>
 <ion-item>
+
 <ion-label stacked color="primary">Session-Id</ion-label>
-<ion-input [(ngModel)]="session" name="session" type="text" ></ion-input>
+<ion-input [(ngModel)]="atten_id" name="session" type="text" ></ion-input>
 </ion-item>
 <button ion-button block  (click)="giveAttendance()" [disabled]='button_status' style="text-align:center;background-color:red;">
-<h1 style="color:white;">Answer Attendance</h1>
+<h1 style="color:white;">Answer Attendance {{dist}}</h1>
 </button>
 </ion-content>

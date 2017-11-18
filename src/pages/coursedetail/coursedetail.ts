@@ -31,7 +31,7 @@ export class CoursedetailPage {
   options: any;
   login: {file?: string}={};
   @Input() accept = 'image/*';
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,public storage: Storage, public http:Http,public iab:InAppBrowser,public file: File,public filetransfer:FileTransfer) 
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,public storage: Storage, public http:Http,public iab:InAppBrowser,public file: File,public filetransfer:FileTransfer)
   {
 
   this.course="Structure";
@@ -44,7 +44,7 @@ export class CoursedetailPage {
     });
     this.options = new RequestOptions({headers:headers})
   this.storage.get("courses").then((val)=>{
-    
+
     let temp ={};
     console.log();
     for(let i=0;val[i]!=undefined;i++){
@@ -72,20 +72,6 @@ export class CoursedetailPage {
     }
     console.log("assignment",this.assignm)
   });
-  console.log("yey",this.course_id);
-let body={
-  course_id:this.course_id
-};
-
-  this.http.post("https://iiitssmartattendance.herokuapp.com/api/courses_rel_students/",body,this.options)
-  .map(res=>res.json())
-  .subscribe((res)=>{
-    for(let i of Object.keys(res))
-    {
-      this.students.push({"Name":res[i].First_Name+" "+res[i].Last_Name,"Num":i});
-    }
-    console.log("lol",this.students);
-  });
 });
 }
 
@@ -112,56 +98,40 @@ let body={
   }
   openlink(url){
     this.iab.create(url,'_system');
-    // console.log(this.file.applicationDirectory);
-    // const alert = this.alertCtrl.create({
-    //   title: 'Dir',
-    //   subTitle: this.file.externalDataDirectory,
-    //   buttons: ['ok']
-    // });
-    // alert.present();
-    // const options: DocumentViewerOptions = {
-    //   title: 'My PDF'
-    // };
-    // this.fileopener.viewDocument("assets/file/file.pdf",'application/pdf',options);
-    // this.fileopener.open(this.file.+"/assets/file/file.pdf",'application/pdf')
-//     const options: DocumentViewerOptions = {
-//       title: 'My PDF'
-//     };
-// this.document.viewDocument('../../assets/file/file.pdf', , options);
   }
-  presentPrompt() {
-    const alert = this.alertCtrl.create({
-      title: 'File Upload',
-      inputs: [
-        {
-          name: 'File',
-          placeholder: 'File to upload',
-          type: 'file'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'OK',
-          handler: data => {
-            let lol=this.alertCtrl.create({
-              title:data.File
-            });
-            lol.present();
-            console.log(data);
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
-  
+  // presentPrompt() {
+  //   const alert = this.alertCtrl.create({
+  //     title: 'File Upload',
+  //     inputs: [
+  //       {
+  //         name: 'File',
+  //         placeholder: 'File to upload',
+  //         type: 'file'
+  //       }
+  //     ],
+  //     buttons: [
+  //       {
+  //         text: 'Cancel',
+  //         role: 'cancel',
+  //         handler: data => {
+  //           console.log('Cancel clicked');
+  //         }
+  //       },
+  //       {
+  //         text: 'OK',
+  //         handler: data => {
+  //           let lol=this.alertCtrl.create({
+  //             title:data.File
+  //           });
+  //           lol.present();
+  //           console.log(data);
+  //         }
+  //       }
+  //     ]
+  //   });
+  //   alert.present();
+  // }
+  //
 
 }
 // @Component({

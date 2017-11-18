@@ -30,6 +30,7 @@ export class LoginPage {
     login: {ph_number?: string, password?: string} = {};
     passsubmitted = false;
     usersubmitted = false;
+    base_url:string;
   constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
@@ -40,6 +41,7 @@ export class LoginPage {
         public http: Http,
         public alertCtrl:AlertController,
         public auth: AuthServiceProvider) {
+            this.base_url = "https://iiitssmartattendance.herokuapp.com";
             this.storage.get("login_stat").then((val) => {
                 console.log(val);
                 if(val)
@@ -65,6 +67,7 @@ export class LoginPage {
         this.passsubmitted = false;
         let loading = this.loadingCtrl.create({
               content: "<div>Logging in</div>",
+              showBackdrop: false,
           });
         loading.present();
         let body = {
@@ -75,20 +78,20 @@ export class LoginPage {
             'Content-Type' : 'application/json; charset=utf-8'
         });
         let options = new RequestOptions({ headers: headers});
-        let base_url = "https://iiitssmartattendance.herokuapp.com";
-        let loginurl = base_url+"/api/validate_user/";
+        let loginurl = this.base_url+"/api/validate_user/";
         this.http.post(loginurl, body, options)
             .map(res => res.json())
             .subscribe((jsonres)=>
             {
                     console.log("Correct!");
-                this.storage.get("roles_dict").then((val)=>{
-                    console.log("val!!",val,jsonres)
+                    console.log("val!!",jsonres)
                     console.log("Hallo");
-                    this.auth.getNessdata(jsonres.token);
-                    if(val[jsonres.Role]=="Student")
+                    if(jsonres.Role.Role_name=="Student")
                     {
+                        this.auth.getNessdata(jsonres.token).catch().then(()=>{
                         this.storage.set("user",jsonres);
+                        loading.dismiss();
+                        console.log("WOWOW");
                         let body = {
                             'student_id': jsonres.Person_ID
                         };
@@ -97,7 +100,7 @@ export class LoginPage {
                             'Authorization' : 'JWT '+jsonres.token
                         });
                         let options = new RequestOptions({ headers: headers});
-                        this.http.post(base_url+"/api/student_rel_courses/", body, options)
+                        this.http.post(this.base_url+"/api/student_rel_courses/", body, options)
                         .map(res=>res.json())
                         .subscribe((jsonresp)=>{
                             this.storage.set("courses",jsonresp);
@@ -106,8 +109,8 @@ export class LoginPage {
                         loading.setContent("Success!");
                         this.showToast("Welcome "+jsonres.first_name+" "+jsonres.last_name);
                         this.storage.set("login_stat",true);
-                        loading.dismiss();
                         this.navCtrl.setRoot(DashboardPage);
+                        });
                     }
                     else
                     {
@@ -121,7 +124,7 @@ export class LoginPage {
                     }
 
 
-            });
+
             },(error)=>
             {
                 console.log(Object.keys(error));

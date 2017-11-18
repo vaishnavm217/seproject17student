@@ -12,12 +12,9 @@
 
 
   </ion-navbar>
+  <ion-toolbar>
 
-</ion-header>
-
-
-<ion-content padding>
-
+<!--cell padding -->
   <ion-segment  [(ngModel)]="course">
   <ion-segment-button value="Structure">
     Structure
@@ -25,11 +22,23 @@
   <ion-segment-button value="Assignment">
     Assignment
   </ion-segment-button>
-  <ion-segment-button value="Records">
-    Records
-  </ion-segment-button>
-    <!-- <div>{{socs}}</div>some comment -->
+    <!-- <div>{{socs}}</div> -->
   </ion-segment>
+</ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <!-- <ion-segment  [(ngModel)]="course">
+  <ion-segment-button value="Structure">
+    Structure
+  </ion-segment-button>
+  <ion-segment-button value="Assignment">
+    Assignment
+  </ion-segment-button>
+   <div>{{socs}}</div>some comment
+  </ion-segment> -->
 
 <!-- </div> -->
 <div class="cl2" [ngSwitch]="course">
@@ -83,8 +92,6 @@ Assignment
 </ion-list>
 
 <!-- ########################################################## -->
-<ion-list *ngSwitchCase="'Records'">
-</ion-list>
 
 </div>
 
